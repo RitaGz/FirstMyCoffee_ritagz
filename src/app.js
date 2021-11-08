@@ -2,15 +2,10 @@ const path = require('path');
 const express = require('express');
 const morgan = require('morgan');
 const mongoose = require('mongoose');
+require('dotenv').config(); // i have access to variables de ambiente customized by me
 
 
 const app = express();
-
-//connecting to db
-mongoose.connect('mongodb://localhost/firstmycoffee-mongo')
- .then(db => console.log('Db connected'))
- .catch(err => console.log(err));
-
 
 //importing routes
 const indexRoutes = require('./routes/index');
@@ -26,6 +21,18 @@ app.use(express.urlencoded({extended: false}));
 
 //routes
 app.use('/', indexRoutes);
+app.get("/", (req, res) => {
+    res.send("welcome to my API"); //it will tell this message on the server
+});
+
+//connecting to db
+mongoose
+.connect(process.env.MONGODB_URI)
+.then(() => console.log("Connected to MongoDB Atlas"))
+.catch((error) => console.error(error));
+
+ //.then(db => console.log('Db connected'))
+ //.catch(err => console.log(err));
 //starting the server
 
 app.listen(app.get('port'), () => {

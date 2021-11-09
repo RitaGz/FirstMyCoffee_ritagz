@@ -5,6 +5,7 @@ const mongoose = require('mongoose');
 require('dotenv').config(); // i have access to variables de ambiente customized by me
 
 const app = express();
+//const expressLayouts = require ('express-ejs-layouts'); //mmmmmmmm
 
 //importing routes, all the routes of index, create,edit delete or update are going to be called here
 const indexRoutes = require('./routes/index');
@@ -12,7 +13,11 @@ const indexRoutes = require('./routes/index');
 //settings of the port
 app.set('port', process.env.PORT || 3000);
 app.set('views', path.join(__dirname, 'views')); //it tells the server where is the views folder
-app.set('view engine', 'ejs');
+app.set('view engine', 'ejs'); //it says all the files will end with ejs
+//app.set('layout', 'layouts/layout'); //mmmmmm
+//app.use(expressLayouts)
+app.use(express.static('public'));
+
 
 //middlewares, they process data before they get to the routes
 app.use(express.json());

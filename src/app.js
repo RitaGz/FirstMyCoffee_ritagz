@@ -4,20 +4,23 @@ const morgan = require('morgan');
 const mongoose = require('mongoose');
 require('dotenv').config(); // i have access to variables de ambiente customized by me
 
-
 const app = express();
 
-//importing routes
+//importing routes, all the routes of index, create,edit delete or update are going to be called here
 const indexRoutes = require('./routes/index');
 
-//settings
+//settings of the port
 app.set('port', process.env.PORT || 3000);
 app.set('views', path.join(__dirname, 'views')); //it tells the server where is the views folder
 app.set('view engine', 'ejs');
 
 //middlewares, they process data before they get to the routes
+app.use(express.json());
+app.use('/api', indexRoutes);
+
 app.use(morgan('dev'));
 app.use(express.urlencoded({extended: false}));
+
 
 //routes
 app.use('/', indexRoutes);

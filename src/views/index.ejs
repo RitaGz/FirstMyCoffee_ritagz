@@ -38,13 +38,16 @@
             <div class="col-md-5">
                 <div class="card">
                     <div class="card-body">
-                        <form action="">
+<!-- onces i click the Add button in the form, it will send an event to the server, get or post methods, listening to a specific route -->
+                        <form action="/add" method="post">
                             <div class="form-group">
-                                <input type="text" name="title" placeholder="Insert a Title" class="form-control">
+                                <input type="text" name="Name" placeholder="Insert a new Name" class="form-control" autofocus>
                             </div>
                             <div class="form-group">
-                                <textarea name="description" id="" cols="80" class="form-control" placeholder="Insert a Description">
-                                </textarea>
+                                <input type="text" name="Size" id="" cols="80" placeholder="Insert a new Size" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <input type="text" name="Price" id="" cols="80" placeholder="Insert a new Price" class="form-control">
                             </div>
                             <button type="submit" class="btn btn-primary btn-block">
                                 Add
@@ -61,8 +64,9 @@
                         <tr>
                             <th>N*</th>
                             <th>Name</th>
-                            <th>Price</th>
                             <th>Size</th>
+                            <th>Price</th>
+                            <th>Operations</th>
                         </tr>
                     </thead>
                     <tbody>

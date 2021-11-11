@@ -16,15 +16,19 @@ app.set('views', path.join(__dirname, 'views')); //it tells the server where is 
 app.set('view engine', 'ejs'); //it says all the files will end with ejs
 //app.set('layout', 'layouts/layout'); //mmmmmm
 //app.use(expressLayouts)
+
+
 app.use(express.static('public'));
+//app.use(express.static(__dirname + 'public')); //static files
 
 
 //middlewares, they process data before they get to the routes
-app.use(express.json());
+
 app.use('/api', indexRoutes);
 
 app.use(morgan('dev'));
-app.use(express.urlencoded({extended: false}));
+app.use(express.json());
+app.use(express.urlencoded({extended: true}));
 
 
 //routes
@@ -35,7 +39,7 @@ app.get("/", (req, res) => {
 
 //connecting to db
 mongoose
-.connect(process.env.MONGODB_URI)
+.connect(process.env.MONGODB_URI) //here should be the key from mongo
 .then(() => console.log("Connected to MongoDB Atlas"))
 .catch((error) => console.error(error));
 

@@ -1,6 +1,8 @@
 const mongoose = require('mongoose');
+//const { Schema, model} = require('mongoose');
 
 const coffeeSchema = mongoose.Schema({
+//const coffeeSchema = new Schema({
     name: {
         type: String,
         require: true
@@ -13,8 +15,12 @@ const coffeeSchema = mongoose.Schema({
         type: String,
         require: true 
     }
-
 });
+// }, {collection:'User',
+// versionKey: false //here
+// }
+// );
 
-//exporting data of the model of one coffee
-module.exports = mongoose.model('Coffee', coffeeSchema);
+//exporting data of the model of one coffee and the
+module.exports = mongoose.model('coffees', coffeeSchema);
+//module.exports = model('coffees', coffeeSchema);

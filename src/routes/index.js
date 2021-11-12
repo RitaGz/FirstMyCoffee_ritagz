@@ -9,8 +9,8 @@ const router = express.Router();
 router.get('/', (req, res) => {
     res.render('index'); // redirect and get index.ejs to show me the html on the browser
 });
-
-router.post('/cafes', (req, res) => {
+//name of the database is coffees
+router.post('/coffees', (req, res) => {
     //this creates a coffee with the structure i gave in folder models/coffees
     const coffee = coffeeSchema(req.body);
     coffee

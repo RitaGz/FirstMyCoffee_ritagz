@@ -1,6 +1,7 @@
 const express = require('express');
+const coffeeSchema = require ('../models/coffees');
 const coffees = require('../models/coffees');
-const coffeeSchema = require('../models/coffees');
+
 
 const router = express.Router();
 
@@ -14,7 +15,7 @@ router.post('/coffees', (req, res) => {
     //this creates a coffee with the structure i gave in folder models/coffees
     const coffee = coffeeSchema(req.body);
     coffee
-    .save() //i save it in the database
+    .save(coffeeSchema) //i save it in the database
     .then((data) => res.json(data)) //if everuthing goes fine, response with the data
     .catch((error) => res.json({message: error}));
     
@@ -29,8 +30,8 @@ router.post('/add', async (req, res) => {
     // await Coffee.save();
     const newCoffee = new coffees({
         name: req.body.name,
-        price: req.body.price,
-        size: req.body.size
+        size: req.body.size,
+        price: req.body.price
     });
     await newCoffee.save();
     console.log(newCoffee);

@@ -20,6 +20,7 @@ app.set('view engine', 'ejs'); //it says all the files will end with ejs
 
 app.use(express.static('public'));
 //app.use(express.static(__dirname + 'public')); //static files
+app.use(express.static(path.join(__dirname, 'public')));
 
 
 //middlewares, they process data before they get to the routes
@@ -28,7 +29,8 @@ app.use('/api', indexRoutes);
 
 app.use(morgan('dev'));
 app.use(express.json());
-app.use(express.urlencoded({extended: true}));
+app.use(express.urlencoded({extended: false})); //or true
+//app.use(bodyParser.urlencoded({extended: false}));
 
 
 //routes

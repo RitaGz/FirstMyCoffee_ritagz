@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-//const { Schema, model} = require('mongoose');
+const { Schema, model} = require('mongoose');
 
 const coffeeSchema = new mongoose.Schema({
     name: String,
@@ -8,12 +8,11 @@ const coffeeSchema = new mongoose.Schema({
 
 }, {
     collection: 'coffees',
-    versionKey: false //here to avoid the __v: 0 
+    versionKey: false //here to avoid  __v: 0 
 });
 
-//exporting data of the model of one coffee and the
+//exporting data of the model of one coffee and the schema
 module.exports = mongoose.model('coffees', coffeeSchema);
-//module.exports = model('coffees', coffeeSchema);
 
 //this was another schema
     // name: {

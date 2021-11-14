@@ -6,6 +6,8 @@ const mongoose = require('mongoose');
 require('dotenv').config(); // i have access to variables de ambiente customized by me
 
 const app = express();
+//const ejs = require('ejs');
+//const ejsLint = require('ejs-lint'); //this makes crash the app
 
 //importing routes, all the routes of index, create,edit delete or update are going to be called here
 const indexRoutes = require('./routes/index');
@@ -34,7 +36,7 @@ app.get("/", (req, res) => {
 
 //connecting to db, added this, , {useNewUrlParser: true}
 mongoose
-.connect(process.env.MONGODB_URI, {useNewUrlParser: true}) //here should be the key from mongo
+.connect(process.env.MONGODB_URI, {useNewUrlParser: true, useUnifiedTopology: true}) //here should be the key from mongo
 .then(() => console.log("Connected to MongoDB Atlas"))
 .catch((error) => console.error(error));
 

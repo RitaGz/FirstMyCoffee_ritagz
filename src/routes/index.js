@@ -1,37 +1,63 @@
 const express = require('express');
 const coffeeSchema = require ('../models/coffees');
-const coffees = require('../models/coffees');
+const aCoffee = require('../models/coffees');
 
 const router = express.Router();
 
 //create a request
-router.get('/', (req, res) => {
-    res.render('index'); // redirect and get index.ejs to show me the html on the browser
+// router.get('/', (req, res) => {
+//     res.render('index'); // redirect and get index.ejs to show me the html on the browser
+// });
+router.get('/', async (req, res) => {
+    const coffeeItems = await aCoffee.find();
+    console.log(coffeeItems);
+    res.render('index', {
+        coffeeItems//coffeeItems: coffees
+    }); // redirect and get index.ejs to show me the html on the browser
 });
 
-//name of the database is coffees
-// router.post('/coffee', (req, res) => {
-//     //this creates a coffee with the structure i gave in folder models/coffees
-//     const coffee = coffeeSchema(req.body); 
-//     coffee
-//     .save(coffeeSchema) //i save it in the database
-//     .then((data) => res.json(data)) //if everuthing goes fine, response with the data
-//     .catch((error) => res.json({message: error}));
-// });
-
 router.post('/add', async (req, res) => {
-    const newCoffee = new coffees({
-        name: req.body.name,
-        size: req.body.size,
-        price: req.body.price
-    });
-    await newCoffee.save(coffeeSchema);
-    res.send('Received');
+    const newCoffee = new aCoffee(req.body);
+    await newCoffee.save();
+    res.redirect('/'); //res.send('Received');
     //this route make the browser sends to the server a request and i get the received message back
-
-    //to see the database in console...
-    console.log(newCoffee);
+    console.log(newCoffee);//to see the database down to the console...
     console.log(req.body);
+});
+
+//route to indicate that a item changed from one status to seasonal, i cannot change to green color!!
+router.get('/seasonal/:id', async (req,res) => {
+    const { id } = req.params; // i receive the id from the browser
+    const coffeeItems = await aCoffee.findById(id); // i find the item and i store in the constant item
+    coffeeItems.status = !coffeeItems.status; //if the status was in true, well now will be false.
+    await coffeeItems.save();
+    console.log(coffeeItems);
+    res.redirect('/'); //res.send('received')
+});
+
+//route to delete an item from the form and databases
+router.get('/delete/:id', async (req,res) => {
+    const { id } = req.params;
+    await aCoffee.remove({_id: id}); // this line removes the coffe item from the database by _id
+    res.redirect('/'); // and i redirect to the main screen again
+    // console.log(req.params.id)
+    // res.send('received!!');
+});
+
+//edit button, find the item to redirect to a secondary form
+router.get('/edit/:id', async (req,res) => {
+    const { id } = req.params; // i receive the id from the browser
+    const coffeeItems = await aCoffee.findById(id);
+    res.render('edit', {
+        coffeeItems
+    });
+});
+
+//update one of the items in the secondary form
+router.post('/update/:id', async (req,res) => {
+    const { id } = req.params;
+    await aCoffee.update({ _id: id}, req.body); //it's going to look for the item with that id and then update it
+    res.redirect('/');
 });
 
 module.exports = router;

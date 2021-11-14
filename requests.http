@@ -1,9 +1,0 @@
-###
-POST https://3000-olive-coyote-oi72c4uj.ws-eu18.gitpod.io HTTP/1.1
-Content-Type: application/json
-
-{
-    "name": "Cafe Mocha",
-    "price": "3.50",
-    "size": "Medium"
-}

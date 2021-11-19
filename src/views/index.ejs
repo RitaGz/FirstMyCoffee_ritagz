@@ -6,7 +6,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FirstMyCoffee Rita</title>
+
+    <title>First! My Coffee from Rita</title>
 
     <!-- bootstrap 4 cdn -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
@@ -16,108 +17,141 @@
         integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <!-- bootstrap 4 jumbotron -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </head>
 
+<style>
+    /* body, html {
+      height: 100%;
+      font-family: "Inconsolata", sans-serif;
+    } */
+
+    .jumbotron {
+        background-position: center;
+        background-size: cover;
+        background-image: url("/src/views/style.css/img1.jpg");
+        min-height: 75%;
+    }
+
+    /* .menu {
+      display: none;
+    } */
+</style>
+
 <body>
-    <!-- cut here -->
+
     <nav class="navbar navbar-dark bg-dark">
         <a href="/" class="navbar-brand"> Rita's Coffee Shop </a>
     </nav>
 
-    <div class="jumbotron jumbotron-fluid">
+    <!-- <div class="jumbotron jumbotron-fluid"> -->
+    <div style="background-color:rgba(204, 230, 199, 0.979)">
+        <!-- cut here -->
+        <!-- % include partials_header %>  -->
+        <!-- i will take this later, it is just to show that i can obtain the data from database, but not the json and values -->
+        <pre>
+                <%= coffeeItems %>
+                </pre>
+
+
+        <!-- div container that contains the table -->
         <div class="container">
-            <h1>First My Coffee!</h1>
-            <p>emmmmmmm</p>
-        </div>
-    </div>
-    <!-- cut here -->
-    <!-- % include partials_header %>  -->
-<!-- i will take this later, it is just to show that i can obtain the data from database, but not the json and values -->
-    <pre>
-        <%= coffeeItems %>
-    </pre>
+            <p>Hi!! my new coffee app!!</p>
+            <div class="row">
+                <!-- Form -->
+                <div class="col-md-5 mb-5">
+                    <div class="card">
+                        <div class="card-body">
+                            <!-- onces i click the Add button in the form, it will send an event to the server, get or post methods, listening to a specific route -->
+                            <form action="/add" method="POST">
+                                <div class="form-group">
+                                    <input type="text" name="Name" placeholder="Insert a new Name" class="form-control"
+                                        autofocus>
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" name="Size" id="" cols="80" placeholder="Insert a new Size"
+                                        class="form-control">
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" name="Price" id="" cols="80" placeholder="Insert a new Price"
+                                        class="form-control">
+                                </div>
+                                <button type="submit" class="btn btn-primary btn-block">
+                                    Add
+                                </button>
 
-    <!-- div container that contains the table -->
-    <div class="container">
-        <p>Hi!! my new coffee app!!</p>
-        <div class="row">
-            <!-- Form -->
-            <div class="col-md-5">
-                <div class="card">
-                    <div class="card-body">
-                        <!-- onces i click the Add button in the form, it will send an event to the server, get or post methods, listening to a specific route -->
-                        <form action="/add" method="POST">
-                            <div class="form-group">
-                                <input type="text" name="Name" placeholder="Insert a new Name" class="form-control"
-                                    autofocus>
-                            </div>
-                            <div class="form-group">
-                                <input type="text" name="Size" id="" cols="80" placeholder="Insert a new Size"
-                                    class="form-control">
-                            </div>
-                            <div class="form-group">
-                                <input type="text" name="Price" id="" cols="80" placeholder="Insert a new Price"
-                                    class="form-control">
-                            </div>
-                            <button type="submit" class="btn btn-primary btn-block">
-                                Add
-                            </button>
-
-                        </form>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <!-- LIST!! -->
+                <div class="col-md-7 mb-5">
+                    <div class="card">
+                        <div class="card-body">
+                            <table class="table table-bordered table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>N*</th>
+                                        <th>Name</th>
+                                        <th>Size</th>
+                                        <th>Price</th>
+                                        <th>Operations</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <% for (var i=0; i < coffeeItems.length; i++) { %>
+                                        <tr>
+                                            <td>
+                                                <%= i + 1 %>
+                                            </td>
+                                            <td>
+                                                <%= coffeeItems[i].Name %>
+                                            </td>
+                                            <td>
+                                                <%= coffeeItems[i].Size %>
+                                            </td>
+                                            <td>
+                                                <%= coffeeItems[i].Price %>
+                                            </td>
+                                            <td>
+                                                <a href="/seasonal/<%= coffeeItems[i]._id %>"
+                                                    class="btn <%= coffeeItems[i].status ? 'btn-primary' : 'btn-dark' %>">Seasonal</a>
+                                                <a href="/delete/<%= coffeeItems[i]._id %>"
+                                                    class="btn btn-danger">Delete</a>
+                                                <a href="/edit/<%= coffeeItems[i]._id %>" class="btn btn-info">Edit</a>
+                                            </td>
+                                        </tr>
+                                        <% } %>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>
-            <!-- LIST!! -->
-            <div class="col-md-7">
-                <table class="table table-bordered table-hover">
-                    <thead>
-                        <tr>
-                            <th>N*</th>
-                            <th>Name</th>
-                            <th>Size</th>
-                            <th>Price</th>
-                            <th>Operations</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <% for (var i=0; i < coffeeItems.length; i++) { %>
-                            <tr>
-                                <td>
-                                    <%= i + 1 %>
-                                </td>
-                                <td>
-                                    <%= coffeeItems[i].Name %>
-                                </td>
-                                <td>
-                                    <%= coffeeItems[i].Size %>
-                                </td>
-                                <td>
-                                    <%= coffeeItems[i].Price %>
-                                </td>
-                                <td>
-                                    <a href="/seasonal/<%= coffeeItems[i]._id %>"
-                                        class="btn <%= coffeeItems[i].status ? 'btn-primary' : 'btn-dark' %>">Seasonal</a>
-                                    <a href="/delete/<%= coffeeItems[i]._id %>" class="btn btn-danger">Delete</a>
-                                    <a href="/edit/<%= coffeeItems[i]._id %>" class="btn btn-info">Edit</a>
-                                </td>
-                            </tr>
-                            <% } %>
-                    </tbody>
-                </table>
-            </div>
+            <!-- this div down, closes and contains the table -->
         </div>
-        <!-- this div down, closes and contains the table -->
+        <!-- div background color -->
+
+
     </div>
 
+
+
+
+
     <!-- cut here -->
-    <footer class="footer unique-color-dark">
-        <!-- <div class="container text-center" unique-color-dark class="text-white" py-3>&copy; Rita Gz - 2018284</div> -->
-        <div class="footer-copyright text-center text-black py-3 mt-4 mb-4 unique-color-dark">© 2021 Copyright
-            RitaGomez.com -
-            2018284
+    <footer class="background-color text-center text-black py-3 mt-0 mb-0">
+        <p class="mt-4 " style="font-weight: bolder;">
+            © 2021 Copyright - RitaGomez.com - 2018284
+        </p>
+
+        <a href="https://mdbootstrap.com/"> </a>
+        <!-- <div class="container text-center" unique-color-dark class="text-white" py-3></div> -->
+
+        <!-- <div class="container bg-dark text-center text-white py-3 mb-0 mt-0">© 2021 Copyright - RitaGomez.com - 2018284
             <a href="https://mdbootstrap.com/"> </a>
-        </div>
+        </div> -->
     </footer>

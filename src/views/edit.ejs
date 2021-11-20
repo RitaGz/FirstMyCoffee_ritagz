@@ -8,6 +8,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FirstMyCoffee Rita</title>
 
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic">
+
     <!-- bootstrap 4 cdn -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
@@ -16,22 +21,18 @@
         integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <!-- button link -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@4.5.2/dist/lumen/bootstrap.min.css" integrity="sha384-GzaBcW6yPIfhF+6VpKMjxbTx6tvR/yRd/yJub90CqoIn2Tz4rRXlSpTFYMKHCifX" crossorigin="anonymous">
-        <!-- bootstrap 4 jumbotron -->
-    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script> -->
+        
 </head>
 
 <body>
     <!-- cut here -->
     <div>
         <nav class="navbar navbar-dark bg-dark">
-            <a href="/" class="navbar-brand">
-                <p style="font-family:'Helvetica Neue', sans-serif; font-size:large; font-weight: bolder;">Update an Item</p>
+            <a href="" class="navbar-brand">
+                <p style="font-family:'Merriweather, serif'; font-size:x-large; font-weight: bolder; margin-left: 50px;">Update an Item</p>
             </a>
             <a href="/" class="navbar-nav">
-                <p style="font-family:'Helvetica Neue', sans-serif; font-size:large; font-weight: bolder; color: white;">Home</p>
+                <p style="font-family:'Merriweather, serif'; font-size:x-large; font-weight: bolder; color: white; margin-right: 50px;">Home</p>
             </a>
         </nav>
     </div>
@@ -44,7 +45,7 @@
         <div class="row">
             <!-- Form -->
             <div class="col-md-5 offset-md-3 mb-5 mt-5">
-                <div class="card">
+                <div class="card" style="border-width: 10px; margin-bottom: 20px;">
                     <div class="card-body">
                         <!-- onces i click the Add button in the form, it will send an event to the server, get or post methods, listening to a specific route -->
                         <form action="/update/<%= coffeeItems._id %> " method="POST">
@@ -71,10 +72,40 @@
         </div>
     </div>
     <!-- footer -->
-    <footer class="btn-dark py-5 text-center">
+    <!-- <footer class="btn-dark py-5 text-center">
         <p style="font-weight: bold;">
             © 2021 Copyright - RitaGomez.com - 2018284
         </p>
-    </footer>
+    </footer> -->
+    <!-- footer -->
+    <section id="contact"  style="background-color: rgb(212, 220, 228); padding-bottom: 10px;">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 mx-auto text-center mt-4" style="font-size: large; font-family: 'Merriweather, serif';">
+                    <h2 class="section-heading">Get In Touch</h2>
+                    <hr class="my-4">
+                    <p class="mb-5">Student/Staff: Rita Gomez</p>
+                    <p class="mb-5">Student Number: 2018284</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-4 ml-auto text-center" style="font-size: large;"><i class="fa fa-phone fa-3x mb-3 sr-contact"
+                        data-aos="zoom-in" data-aos-duration="300" data-aos-once="true"></i>
+                    <p>123-456-6789</p>
+                </div>
+                <div class="col-lg-4 mr-auto text-center"><i class="fa fa-envelope-o fa-3x mb-3 sr-contact"
+                        data-aos="zoom-in" data-aos-duration="300" data-aos-delay="300" data-aos-once="true"></i>
+                    <p><a href="mailto:your-email@your-domain.com">firstMyCoffee@ritagz.com</a></p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script src="src/views/assets/js/jquery.min.js"></script>
+    <script src="src/views/assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="src/views/assets/js/bs-init.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.1.1/aos.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js"></script>
+    <script src="src/views/assets/js/creative.js"></script>
 </body>
 </html>

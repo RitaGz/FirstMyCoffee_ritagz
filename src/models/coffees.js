@@ -4,7 +4,11 @@ const mongoose = require('mongoose');
 const coffeeSchema = new mongoose.Schema({
     name: String,
     size: String,
-    price: Number
+    price: Number,
+    status: {
+        type: Boolean,
+        default: false
+    }
 
 }, {
     collection: 'coffees',

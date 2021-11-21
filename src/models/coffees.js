@@ -7,7 +7,8 @@ const coffeeSchema = new mongoose.Schema({
     price: Number,
     status: {
         type: Boolean,
-        default: false
+        default: false,
+        require: true
     }
 
 }, {

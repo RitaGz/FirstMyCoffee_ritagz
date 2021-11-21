@@ -17,11 +17,11 @@ router.get('/', async (req, res) => {
 });
 
 router.post('/add', async (req, res) => {
-    const newCoffee = new aCoffee(req.body);
-    await newCoffee.save();
+    const coffeeItems = new aCoffee(req.body);
+    await coffeeItems.save();
     res.redirect('/'); //res.send('Received');
     //this route make the browser sends to the server a request and i get the received message back
-    console.log(newCoffee);//to see the database down to the console...
+    console.log(coffeeItems);//to see the database down to the console...
     console.log(req.body);
 });
 

@@ -1,13 +1,11 @@
 const express = require('express');
-const coffeeSchema = require ('../models/coffees');
-const aCoffee = require('../models/coffees');
+//const coffeeSchema = require ('../models/coffees');
+
+const aCoffee = require('../models/coffees'); //pasar a coffeeSchema
 
 const router = express.Router();
 
 //create a request
-// router.get('/', (req, res) => {
-//     res.render('index'); // redirect and get index.ejs to show me the html on the browser
-// });
 router.get('/', async (req, res) => {
     const coffeeItems = await aCoffee.find();
     console.log(coffeeItems);
@@ -25,7 +23,7 @@ router.post('/add', async (req, res) => {
     console.log(req.body);
 });
 
-//route to indicate that a item changed from one status to seasonal, i cannot change to green color!!
+//route to indicate that a item changed from one false status black color to a seasonal in green color
 router.get('/seasonal/:id', async (req,res) => {
     const { id } = req.params; // i receive the id from the browser
     const coffeeItems = await aCoffee.findById(id); // i find the item and i store in the constant item
